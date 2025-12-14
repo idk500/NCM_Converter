@@ -104,7 +104,7 @@ python ncm_converter.py [输入文件夹] [输出文件夹]
 
 ```bash
 pip install pyinstaller
-pyinstaller ncm_converter.spec
+pyinstaller --onefile --windowed --icon=ncm_converter.ico ncm_converter.py
 ```
 
 生成的可执行文件将在 `dist` 文件夹中。
@@ -113,7 +113,7 @@ You can use PyInstaller to package this script into a standalone executable:
 
 ```bash
 pip install pyinstaller
-pyinstaller ncm_converter.spec
+pyinstaller --onefile --windowed --icon=ncm_converter.ico ncm_converter.py
 ```
 
 The generated executable will be in the `dist` folder.
