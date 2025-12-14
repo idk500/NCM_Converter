@@ -30,7 +30,7 @@ jobs:
         pyinstaller ncm_converter.spec
         
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ncm-converter-windows
         path: dist/ncm_converter.exe
@@ -41,7 +41,7 @@ jobs:
     
     steps:
     - name: Download artifact
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: ncm-converter-windows
         
