@@ -30,7 +30,6 @@ jobs:
             zlib1g-dev \
             libncurses5-dev \
             libncursesw5-dev \
-            libtinfo5 \
             cmake \
             libffi-dev \
             libssl-dev \
@@ -38,7 +37,9 @@ jobs:
             zip \
             unzip \
             git \
-            wget
+            wget \
+            build-essential \
+            libltdl-dev
       
       - name: Set up Java environment
         run: |
