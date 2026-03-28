@@ -1,7 +1,7 @@
 [app]
 
 title = NCM转换器
- package.name = ncmconverter
+package.name = ncmconverter
 package.domain = org.example
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas

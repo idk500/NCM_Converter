@@ -13,7 +13,7 @@ from kivymd.uix.snackbar import Snackbar
 from kivymd.uix.boxlayout import MDBoxLayout
 
 from app.converter import NCMConverter
-from app.path_sniffer import PathSniffer
+from app.path_sniffer import PathSniffer as PathSnifferClass
 
 
 class MainScreen(MDScreen):
@@ -48,7 +48,7 @@ class MainScreen(MDScreen):
     
     def sniff_paths(self, *args):
         """执行路径嗅探"""
-        result = PathSniffer.sniff()
+        result = PathSnifferClass.sniff()
         
         if result['input_path']:
             self.input_path = result['input_path']
