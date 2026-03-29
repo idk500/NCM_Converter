@@ -50,7 +50,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip setuptools wheel
           pip install buildozer cython==0.29.33
-          pip install "kivy[base]" kivymd ncmdump plyer pyjnius
+          pip install "kivy[base]" kivymd plyer
       
       - name: Cache Buildozer
         uses: actions/cache@v4

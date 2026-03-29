@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme.NCMConverter" parent="Theme.NCMConverter">
+    
+    <!-- Main UI elements -->
+    <color name="colorPrimary">@color/primary</    <color name="colorPrimaryVariant">@color/primary_dark</    <color name="colorOn_surface">@color/on_surface</    <color name="colorSurface">@color/surface</    <color name="android:windowBackground">@android:windowBackground</color>
+    <color name="android:windowBackground">@android:windowBackground</color>
+    <color name="android:windowBackground">@android:windowBackground</color>
+        <color name="android:status_bar_color">@android:status_bar_color_translucent</color>
+    <color name="android:status_bar_color">@android:status_bar_color_translucent</color>
+    <color name="android:navigation_bar">@color/navigation_bar</color>
+    <color name="android:color_control_normal">@color/controlNormal</color>
+</resources>

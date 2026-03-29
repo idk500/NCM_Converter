@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <!-- 标题 -->
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NCM转换器"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:gravity="center"/>
+
+    <!-- 输入路径卡片 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="2dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="输入路径"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_input_path"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="正在检测..."
+            android:textSize="12sp"
+            android:textColor="#666666" />
+
+        <TextView
+            android:id="@+id/tv_input_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="12sp"
+            android:textColor="#999999" />
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- 输出路径卡片 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_output"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="2dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="输出路径"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_output_path"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="请选择输出路径"
+            android:textSize="12sp"
+            android:textColor="#666666" />
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- 进度卡片 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="2dp">
+
+        <TextView
+            android:id="@+id/tv_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="准备就绪"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_current_file"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="12sp"
+            android:textColor="#666666" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="0" />
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- 日志卡片 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_log"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="2dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="转换日志"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <ScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scrollbars="vertical">
+
+            <TextView
+                android:id="@+id/tv_log"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="等待开始..."
+                android:textSize="12sp"
+                android:textColor="#666666" />
+
+        </ScrollView>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- 转换按钮 -->
+    <Button
+        android:id="@+id/btn_convert"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="开始转换"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:background="#2196F3" />
+
+</LinearLayout>

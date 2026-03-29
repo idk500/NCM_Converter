@@ -1,10 +1,11 @@
 """
 NCM转换核心逻辑
-复用PC版的转换功能
+使用纯Python实现的NCM解码器
 """
 import os
 import time
-from ncmdump import dump
+# 使用内嵌的纯Python解码器，替代ncmdump
+from app.ncm_decoder import dump
 
 
 class ConversionResult:

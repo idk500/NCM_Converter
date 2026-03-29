@@ -19,7 +19,8 @@ source.include_exts = py,png,jpg,kv,atlas,txt,json
 version = 1.0.0
 
 # (list) Application requirements
-requirements = python3,kivy,kivymd,ncmdump,plyer,pyjnius
+# 使用纯Python实现的NCM解码器，无需ncmdump
+requirements = python3,kivy,kivymd,plyer
 
 # (str) Presplash of the application
 #presplash.filename = %(source.dir)s/presplash.png
