@@ -54,6 +54,12 @@ jobs:
           distribution: temurin
           java-version: "17"
 
+      # Chaquopy's buildPython must match the app's Python (3.13).
+      - name: Set up Python 3.13 (Chaquopy buildPython)
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
