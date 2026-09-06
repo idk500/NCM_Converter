@@ -7,130 +7,81 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.6+-blue.svg" alt="Python Version">
   <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License">
-  <img src="https://img.shields.io/badge/Platform-Windows-blue.svg" alt="Platform">
+  <img src="https://img.shields.io/badge/Platform-Windows-blue.svg" alt="Windows">
+  <img src="https://img.shields.io/badge/Platform-macOS-lightgrey.svg" alt="macOS">
+  <img src="https://img.shields.io/badge/Platform-Android-green.svg" alt="Android">
 </p>
 
 NCM 格式音频文件转换工具 / NCM Audio File Converter
 
 ## 简介 / Introduction
 
-这是一个用于将网易云音乐的 NCM 格式音频文件转换为常见音频格式（如 MP3、FLAC）的工具。NCM 是网易云音乐使用的专有加密格式，此工具可以将其解密并转换为标准音频格式。
+这是一个用于将网易云音乐的 NCM 格式音频文件转换为常见音频格式（如 MP3、FLAC）的工具。
 
-This is a tool for converting Netease Cloud Music's NCM format audio files to common audio formats (such as MP3, FLAC). NCM is a proprietary encrypted format used by Netease Cloud Music, and this tool can decrypt it and convert it to standard audio formats.
+**所有平台共用同一套经过验证的解密核心**（`ncmdump==0.1.1` + pycryptodome + mutagen）：
+桌面端直接运行 Python；Android 端通过 [Chaquopy](https://chaquo.com/chaquopy/) 在应用内嵌入
+同一个 Python 核心，不存在第二份算法实现。格式规范见 [docs/ncm-format.md](docs/ncm-format.md)。
 
-## 功能特性 / Features
+All platforms share one proven decryption core. Desktop runs plain Python; Android embeds
+the very same Python core via Chaquopy.
 
-- 批量转换 NCM 文件
-- 支持多种输出格式（MP3、FLAC等）
-- 跳过已存在的文件避免重复转换
-- 可选择强制覆盖已存在的文件
-- 显示转换进度和统计信息
-- 支持中英文界面
-- 命令行操作简便
+## 平台 / Platforms
 
-- Batch convert NCM files
-- Support multiple output formats (MP3, FLAC, etc.)
-- Skip existing files to avoid duplicate conversion
-- Option to force overwrite existing files
-- Display conversion progress and statistics
-- Support for Chinese and English interfaces
-- Simple command-line operation
-
-## 安装要求 / Requirements
-
-- Python 3.6+
-- 依赖包：`ncmdump==0.1.1`
-
-## 安装 / Installation
-
-1. 克隆或下载此仓库：
-   ```bash
-   git clone https://github.com/idk500/NCM_Converter.git
-   cd NCM_Converter
-   ```
-
-2. 安装依赖：
-   ```bash
-   pip install -r requirements.txt
-   ```
-   
-   或者直接安装：
-   ```bash
-   pip install ncmdump==0.1.1
-   ```
+| 平台 | 形态 | 状态 |
+|---|---|---|
+| Windows | `ncm_converter.exe`（CLI，PyInstaller 打包） | ✅ 与此前一致 |
+| macOS | `.app` 外壳 + CLI（`dist/NCM_Converter-macos.zip`） | ✅ 已验证 |
+| Android | APK（Kotlin + Jetpack Compose + 内嵌 Python） | ✅ 已验证 |
+| 鸿蒙 NEXT | — | 暂不支持 |
 
 ## 使用方法 / Usage
 
-### 基本使用 / Basic Usage
+### Windows / macOS（命令行）
 
 ```bash
-python ncm_converter.py [输入文件夹] [输出文件夹]
+python ncm_converter.py [输入文件夹] [输出文件夹] [--force]
+# 或直接运行可执行文件
+ncm_converter [输入文件夹] [输出文件夹]
 ```
 
-### 参数说明 / Parameters
+macOS 的 `.app`：双击会在 Terminal 中打开交互界面；带参数启动等价于 CLI。
+**Gatekeeper 提示**：应用未做公证签名，首次打开请**右键 → 打开**，
+或在 Terminal 执行 `xattr -cr "/Applications/NCM Converter.app"`。
 
-- `[输入文件夹]` - 包含.ncm文件的文件夹路径（默认为当前目录）
-- `[输出文件夹]` - 转换后的文件输出路径（默认为./decode）
+### Android
 
-- `[input_folder]` - Folder path containing .ncm files (default: current directory)
-- `[output_folder]` - Output folder path for converted files (default: ./decode)
+1. 「选择文件」从任意位置多选 .ncm，或「选择文件夹」授权网易云下载目录（下次免选）；
+2. 默认输出到系统 `Music/NCM_Converted/`（无需任何存储权限，音乐类应用可直接看到），
+   也可「自定义文件夹」；
+3. 点「开始转换」，支持批量、进度、跳过已存在文件、完成通知。
 
-### 可选参数 / Optional Arguments
+> 系统限制：Android 15 不允许对**顶级** Download 文件夹做整树授权（"Can't use this folder"
+> 为系统行为）；请选择其子文件夹（网易云的下载目录通常是 `netease/cloudmusic/Music`，不受影响），
+> 或使用「选择文件」。
 
-- `--force` - 强制覆盖已存在的文件 / Force overwrite existing files
-- `--version` - 显示版本信息 / Show version information
-- `--about` - 显示关于信息 / Show about information
-
-### 示例 / Examples
-
-1. 转换当前目录下的所有.ncm文件到默认的decode文件夹：
-   ```bash
-   python ncm_converter.py
-   ```
-
-2. 转换指定文件夹中的.ncm文件到指定输出文件夹：
-   ```bash
-   python ncm_converter.py "C:/Music/NCM" "C:/Music/Converted"
-   ```
-
-3. 强制覆盖已存在的文件：
-   ```bash
-   python ncm_converter.py --force
-   ```
-
-## 构建可执行文件 / Build Executable
-
-您可以使用 PyInstaller 将此脚本打包为独立的可执行文件：
+## 本地构建 / Build
 
 ```bash
-pip install pyinstaller
+# Windows exe（与之前一致）
 pyinstaller ncm_converter.spec
+
+# macOS：CLI + .app + zip
+./macos/build_macos.sh
+
+# Android APK（需 Android SDK/NDK + JDK 17；Chaquopy 会自动处理 Python 依赖）
+cd android_app && ./gradlew assembleDebug
 ```
 
-或者使用命令行参数：
+发布产物由 GitHub Actions 自动构建（tag `v*` 触发），Android 支持通过
+`APK_KEYSTORE_BASE64` 等 secrets 注入正式签名，缺省回退 debug 签名（仍可安装）。
 
-```bash
-pip install pyinstaller
-pyinstaller --onefile --windowed --icon=ncm_converter.ico ncm_converter.py
-```
+## 开发说明 / Development
 
-生成的可执行文件将在 `dist` 文件夹中。
-
-You can use PyInstaller to package this script into a standalone executable:
-
-```bash
-pip install pyinstaller
-pyinstaller ncm_converter.spec
-```
-
-Or using command line parameters:
-
-```bash
-pip install pyinstaller
-pyinstaller --onefile --windowed --icon=ncm_converter.ico ncm_converter.py
-```
-
-The generated executable will be in the `dist` folder.
+- 测试夹具：`scripts/make_test_ncm.py` 按规范**逆向加密**生成合成 .ncm（无需版权音乐），
+  并自动用真实 ncmdump 库做字节级往返校验；
+- Android 端到端验证：SAF 选目录 → 转换 → `Music/NCM_Converted` 输出与参考逐字节一致；
+- 早期两版 Android 移植（Kivy / 原生 Kotlin）的算法实现有误，已归档至 `archive/` 仅供查阅；
+- 修复/打包的 CI 工作流：`.github/workflows/{build_android,release}.yml`。
 
 ## 注意事项 / Notes
 

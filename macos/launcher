@@ -1,0 +1,17 @@
+#!/bin/bash
+# Double-click launcher for NCM Converter.app.
+# With arguments: exec the CLI directly. Without: open it in a visible Terminal window.
+DIR="$(cd "$(dirname "$0")" && pwd)"
+BIN="$DIR/ncm_converter/ncm_converter"
+if [ $# -gt 0 ]; then
+  exec "$BIN" "$@"
+fi
+if [ ! -x "$BIN" ]; then
+  osascript -e 'display alert "NCM 转换器" message "应用损坏：找不到主程序" as critical'
+  exit 1
+fi
+BIN_ESC=${BIN//\'/\'\'\'}
+osascript -e "tell application \"Terminal\"" \
+          -e "activate" \
+          -e "do script \"'$BIN_ESC'\"" \
+          -e "end tell"
